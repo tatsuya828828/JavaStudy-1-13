@@ -21,4 +21,30 @@ public class Hero {
 		System.out.println(this.name +"は、死んでしまった");
 		System.out.println("GAME OVER");
 	}
+	// メソッドを使えば呼び出すことができるためフィールド値を取り出すためのメソッドを定義
+	// これをgetterという
+	// public フィールドの型 getフィールド名() といった形で定義する
+	public String getName() {
+		return this.name;
+	}
+	// フィールド値に代入するためのメソッド
+	// これをsetterという
+	// public void setフィールド名(フィールドの型　変数名) といった形で定義する
+	// public void setName(String name) {
+	// 	this.name = name;
+	// }
+	// setterやgetterを用いることでReadOnlyやWriteOnlyなフィールドを作ることができる
+	// またフィールド名を変えたときにも修正の手間が圧倒的に少ない
+	// ↓ のように、アクセスを検査することもできる
+	public void setName(String name) {
+		if(name == null) {
+			throw new IllegalArgumentException("名前がnullである。処理を中断");
+		} else if(name.length() <= 1) {
+			throw new IllegalArgumentException("名前が短すぎる。処理を中断");
+		} else if(name.length() >= 8) {
+			throw new IllegalArgumentException("名前が長すぎる。処理を中断");
+		} else {
+			this.name = name;
+		}
+	}
 }
